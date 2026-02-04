@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: FloorChair Table.ma
-//Last modified: Tue, Feb 03, 2026 09:46:19 PM
+//Last modified: Tue, Feb 03, 2026 09:51:32 PM
 //Codeset: 1252
 file -rdi 1 -ns "Water_bottle" -rfn "Water_bottleRN" -op "v=0;" -typ "mayaAscii"
 		 "C:/Git Hub/Essentials/DAGV1100and1200/Maya//scenes/Water bottle.ma";
@@ -14,22 +14,22 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 26200)";
-fileInfo "UUID" "7A19C448-4AB6-AEEF-89A4-4B80A99C7DA2";
+fileInfo "UUID" "FD1B4D27-4153-F28A-8365-3FAF0C6456A3";
 createNode transform -s -n "persp";
 	rename -uid "2340ED71-4C42-971C-62FE-75A5C06857A7";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 9.0359090542942457 6.3051045806256827 10.387773406699777 ;
-	setAttr ".r" -type "double3" -13.800000000000212 40.000000000000142 2.0759596326511935e-15 ;
+	setAttr ".t" -type "double3" 34.523753546948619 15.98017603450444 32.643470466529045 ;
+	setAttr ".r" -type "double3" -8.3999999999999844 48.400000000000446 -5.9881554246026749e-16 ;
 	setAttr ".rpt" -type "double3" -1.6154854280475146e-16 7.8340942028700885e-16 1.7628165760090217e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "75410743-4050-D2A0-C816-BEAE13FD440B";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 12.867673146215553;
+	setAttr ".coi" 48.382023787104742;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
-	setAttr ".tp" -type "double3" -2.116857491440955 1.3405165641370134 6.8154715432431061 ;
+	setAttr ".tp" -type "double3" -0.88584484182061463 11.474527568576669 -0.21725580318249271 ;
 	setAttr ".hc" -type "string" "viewSet -p %camera";
 createNode transform -s -n "top";
 	rename -uid "E4D21302-4050-1BF4-3FFB-31B89CE81D48";
@@ -6229,15 +6229,15 @@ createNode mesh -n "pCubeShape43" -p "pCube43";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "34D026F2-4061-F6F0-C84A-80BE30AA9107";
+	rename -uid "AB04476A-460C-F7FC-AC21-FFAAD8D97552";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "EE40D647-4CA5-44C5-2E85-DC817CF57424";
+	rename -uid "8B0E02A1-4D57-A1AC-0381-A8B8272562DA";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "F4EB8C9C-401D-A273-9A3D-03979848C82F";
+	rename -uid "E7E97778-450F-DCBF-EE3C-BA87BAB85B29";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "9DB988C9-4A41-D3B2-B020-B9B4D096CB62";
+	rename -uid "453B55E0-427F-0768-74FB-0C9F48A18438";
 	setAttr ".cdl" 1;
 	setAttr -s 2 ".dli[1]"  1;
 	setAttr -s 2 ".dli";
@@ -6245,7 +6245,7 @@ createNode displayLayer -n "defaultLayer";
 	rename -uid "7B2B3023-4460-F718-E13E-4AB21FBA5CAC";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "D436BE68-4F9B-1BC6-5407-909CEE555A37";
+	rename -uid "85FCDC51-42EA-91F7-A9BA-72BE84613A83";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "3443A85F-4714-B0CD-6ECF-38AD5C3A0BBD";
 	setAttr ".g" yes;
@@ -6612,7 +6612,9 @@ createNode reference -n "Water_bottleRN";
 	rename -uid "D4946118-43F8-93B8-96CA-1D8A78F5EE62";
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"Water_bottleRN"
-		"Water_bottleRN" 0;
+		"Water_bottleRN" 0
+		"Water_bottleRN" 1
+		2 "|Water_bottle:Waterbottle_mesh" "translate" " -type \"double3\" -0.81497054528625301 2.68103313446044922 5.63851772656572514";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 select -ne :time1;
