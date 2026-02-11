@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: FloorChair Table.ma
-//Last modified: Tue, Feb 03, 2026 09:51:32 PM
+//Last modified: Tue, Feb 03, 2026 09:53:12 PM
 //Codeset: 1252
 file -rdi 1 -ns "Water_bottle" -rfn "Water_bottleRN" -op "v=0;" -typ "mayaAscii"
 		 "C:/Git Hub/Essentials/DAGV1100and1200/Maya//scenes/Water bottle.ma";
@@ -14,18 +14,18 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 26200)";
-fileInfo "UUID" "FD1B4D27-4153-F28A-8365-3FAF0C6456A3";
+fileInfo "UUID" "7F101F0F-405A-26AD-1938-CA9C8589BC9E";
 createNode transform -s -n "persp";
 	rename -uid "2340ED71-4C42-971C-62FE-75A5C06857A7";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 34.523753546948619 15.98017603450444 32.643470466529045 ;
-	setAttr ".r" -type "double3" -8.3999999999999844 48.400000000000446 -5.9881554246026749e-16 ;
+	setAttr ".t" -type "double3" 4.1910896162168392 1.8917583885575537 19.027080745041957 ;
+	setAttr ".r" -type "double3" -3.6000000000000107 25.600000000000534 -1.1021152030514271e-16 ;
 	setAttr ".rpt" -type "double3" -1.6154854280475146e-16 7.8340942028700885e-16 1.7628165760090217e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "75410743-4050-D2A0-C816-BEAE13FD440B";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 48.382023787104742;
+	setAttr ".coi" 16.252053084660915;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
