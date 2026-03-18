@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: Table.ma
-//Last modified: Tue, Mar 17, 2026 07:37:57 PM
+//Last modified: Tue, Mar 17, 2026 07:43:29 PM
 //Codeset: 1252
 requires maya "2026";
 requires "mtoa" "5.5.4.2";
@@ -10,7 +10,7 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 26200)";
-fileInfo "UUID" "55C93BA2-488B-B70C-73D3-B494BAB8839F";
+fileInfo "UUID" "594DE799-4566-F94E-F745-439E2D5B93D5";
 createNode transform -s -n "persp";
 	rename -uid "0FF4C704-4FBD-5C83-66BF-BA872E62F160";
 	setAttr ".v" no;
@@ -85,7 +85,7 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" 0.4969999552598946 0.58000561066443956 ;
+	setAttr ".pv" -type "double2" 0.42685519810765982 0.50000008207280189 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
