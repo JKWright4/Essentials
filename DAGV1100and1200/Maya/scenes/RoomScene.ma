@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: RoomScene.ma
-//Last modified: Tue, Mar 17, 2026 07:28:16 PM
+//Last modified: Tue, Mar 17, 2026 11:11:05 PM
 //Codeset: 1252
 file -rdi 1 -ns "Water_bottle" -rfn "Water_bottleRN" -op "v=0;" -typ "mayaAscii"
 		 "C:/Git Hub/Essentials/DAGV1100and1200/Maya//scenes/Water bottle.ma";
@@ -29,6 +29,7 @@ file -r -ns "sofa" -dr 1 -rfn "sofaRN" -op "v=0;" -typ "mayaAscii" "C:/Git Hub/E
 file -r -ns "giantGeode" -dr 1 -rfn "giantGeodeRN" -op "v=0;" -typ "mayaAscii" "C:/Git Hub/Essentials/DAGV1100and1200/Maya//assets/giantGeode.ma";
 requires maya "2026";
 requires -nodeType "polyBoolean" "polyBoolean" "1.1";
+requires "stereoCamera" "10.0";
 requires "mtoa" "5.5.4.2";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
@@ -36,18 +37,18 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 26200)";
-fileInfo "UUID" "97FB180F-4767-D0CB-5267-99B80F4795DF";
+fileInfo "UUID" "CCA3B4BC-462B-A57F-F4FF-DEA0A4728403";
 createNode transform -s -n "persp";
 	rename -uid "2340ED71-4C42-971C-62FE-75A5C06857A7";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 23.61136215786188 16.001781656028996 29.260795908689381 ;
-	setAttr ".r" -type "double3" -25.800000000005415 -332.79999999997892 -8.940004864354001e-16 ;
+	setAttr ".t" -type "double3" 68.111240127384846 27.901662338998705 80.798010774762446 ;
+	setAttr ".r" -type "double3" -7.7999999999984952 -323.19999999999692 0 ;
 	setAttr ".rpt" -type "double3" -1.3898357844384374e-16 6.1098850805538881e-16 1.9520374378479099e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "75410743-4050-D2A0-C816-BEAE13FD440B";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 38.270121827542354;
+	setAttr ".coi" 108.00024112352588;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -501,21 +502,22 @@ createNode mesh -n "polySurfaceShape3" -p "polySurface3";
 	setAttr -s 8 ".iog[0].og";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
+	setAttr ".pv" -type "double2" 0.58753239171845584 0.72004761049478994 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "51823A51-432E-F511-3016-11B2D47F82D1";
+	rename -uid "1CA49FCB-4A4F-205D-A5B2-0AADAB87CEED";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "DF163CE9-4D03-BDD3-A15D-C0A241DDAD5C";
+	rename -uid "B0305C62-42D6-54C1-D2D5-6DB0B0FD3244";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "60353BC4-4D06-01EC-810D-B9BFEF40A586";
+	rename -uid "92CA62F9-4EF2-4EB6-4750-9C937CDB6B3F";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "F1C3D26D-425B-D07B-C0F4-92A120544A62";
+	rename -uid "38D8AC5C-42FE-94C8-259B-9EA4203280D5";
 	setAttr ".cdl" 2;
 	setAttr -s 3 ".dli[1:2]"  1 2;
 	setAttr -s 3 ".dli";
@@ -523,7 +525,7 @@ createNode displayLayer -n "defaultLayer";
 	rename -uid "7B2B3023-4460-F718-E13E-4AB21FBA5CAC";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "E57A6C97-4177-9657-1B08-E2BB73195077";
+	rename -uid "56753F94-40D0-28BA-F5E6-87B884007A98";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "3443A85F-4714-B0CD-6ECF-38AD5C3A0BBD";
 	setAttr ".g" yes;
@@ -570,8 +572,12 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
 		+ "\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n"
 		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"motionMakerEditorPanel\" (localizedPanelLabel(\"MotionMaker Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"MotionMaker Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n"
-		+ "        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"motionMakerEditorPanel\" (localizedPanelLabel(\"MotionMaker Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"MotionMaker Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"Stereo\" (localizedPanelLabel(\"Stereo\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Stereo\")) -mbv $menusOkayInPanels  $panelName;\n{ string $editorName = ($panelName+\"Editor\");\n            stereoCameraView -e \n                -camera \"|persp\" \n                -useInteractiveMode 0\n                -displayLights \"default\" \n                -displayAppearance \"wireframe\" \n                -activeOnly 0\n                -ignorePanZoom 0\n                -wireframeOnShaded 0\n                -headsUpDisplay 1\n                -holdOuts 1\n                -selectionHiliteDisplay 1\n                -useDefaultMaterial 0\n                -bufferMode \"double\" \n                -twoSidedLighting 1\n                -backfaceCulling 0\n                -xray 0\n                -jointXray 0\n                -activeComponentsXray 0\n                -displayTextures 0\n                -smoothWireframe 0\n                -lineWidth 1\n                -textureAnisotropic 0\n                -textureHilight 1\n                -textureSampling 2\n"
+		+ "                -textureDisplay \"modulate\" \n                -textureMaxSize 32768\n                -fogging 0\n                -fogSource \"fragment\" \n                -fogMode \"linear\" \n                -fogStart 0\n                -fogEnd 100\n                -fogDensity 0.1\n                -fogColor 0.5 0.5 0.5 1 \n                -depthOfFieldPreview 1\n                -maxConstantTransparency 1\n                -objectFilterShowInHUD 1\n                -isFiltered 0\n                -colorResolution 4 4 \n                -bumpResolution 4 4 \n                -textureCompression 0\n                -transparencyAlgorithm \"frontAndBackCull\" \n                -transpInShadows 0\n                -cullingOverride \"none\" \n                -lowQualityLighting 0\n                -maximumNumHardwareLights 0\n                -occlusionCulling 0\n                -shadingModel 0\n                -useBaseRenderer 0\n                -useReducedRenderer 0\n                -smallObjectCulling 0\n                -smallObjectThreshold -1 \n                -interactiveDisableShadows 0\n"
+		+ "                -interactiveBackFaceCull 0\n                -sortTransparent 1\n                -controllers 1\n                -nurbsCurves 1\n                -nurbsSurfaces 1\n                -polymeshes 1\n                -subdivSurfaces 1\n                -planes 1\n                -lights 1\n                -cameras 1\n                -controlVertices 1\n                -hulls 1\n                -grid 1\n                -imagePlane 1\n                -joints 1\n                -ikHandles 1\n                -deformers 1\n                -dynamics 1\n                -particleInstancers 1\n                -fluids 1\n                -hairSystems 1\n                -follicles 1\n                -nCloths 1\n                -nParticles 1\n                -nRigids 1\n                -dynamicConstraints 1\n                -locators 1\n                -manipulators 1\n                -pluginShapes 1\n                -dimensions 1\n                -handles 1\n                -pivots 1\n                -textures 1\n                -strokes 1\n                -motionTrails 1\n"
+		+ "                -clipGhosts 1\n                -bluePencil 1\n                -greasePencils 0\n                -shadows 0\n                -captureSequenceNumber -1\n                -width 0\n                -height 0\n                -sceneRenderFilter 0\n                -displayMode \"centerEye\" \n                -viewColor 0 0 0 1 \n                -useCustomBackground 1\n                $editorName;\n            stereoCameraView -e -viewSelected 0 $editorName;\n            stereoCameraView -e \n                -pluginObjects \"gpuCacheDisplayFilter\" 1 \n                $editorName; };\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n"
+		+ "\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
 		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 2776\\n    -height 1066\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 1\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -bluePencil 1\\n    -greasePencils 0\\n    -excludeObjectPreset \\\"All\\\" \\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 2776\\n    -height 1066\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
@@ -613,15 +619,6 @@ lockNode -l 1 ;
 createNode reference -n "Stacked_BooksRN";
 	rename -uid "24320CC6-4EE9-96A7-7069-378002ABB190";
 	setAttr -s 29 ".phl";
-	setAttr ".phl[1]" 0;
-	setAttr ".phl[2]" 0;
-	setAttr ".phl[3]" 0;
-	setAttr ".phl[4]" 0;
-	setAttr ".phl[5]" 0;
-	setAttr ".phl[6]" 0;
-	setAttr ".phl[7]" 0;
-	setAttr ".phl[8]" 0;
-	setAttr ".phl[9]" 0;
 	setAttr ".phl[10]" 0;
 	setAttr ".phl[11]" 0;
 	setAttr ".phl[12]" 0;
@@ -642,10 +639,22 @@ createNode reference -n "Stacked_BooksRN";
 	setAttr ".phl[27]" 0;
 	setAttr ".phl[28]" 0;
 	setAttr ".phl[29]" 0;
+	setAttr ".phl[30]" 0;
+	setAttr ".phl[31]" 0;
+	setAttr ".phl[32]" 0;
+	setAttr ".phl[33]" 0;
+	setAttr ".phl[34]" 0;
+	setAttr ".phl[35]" 0;
+	setAttr ".phl[36]" 0;
+	setAttr ".phl[37]" 0;
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"Stacked_BooksRN"
-		"Stacked_BooksRN" 0
-		"Stacked_BooksRN" 58
+		"Stacked_BooksRN" 2
+		2 "|Stacked_Books:Books|Stacked_Books:pCube23" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
+		
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube23.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[9]" ""
+		"Stacked_BooksRN" 56
 		2 "|Stacked_Books:Books|Stacked_Books:pCube15" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
 		
 		2 "|Stacked_Books:Books|Stacked_Books:pCube16" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
@@ -661,8 +670,6 @@ createNode reference -n "Stacked_BooksRN";
 		2 "|Stacked_Books:Books|Stacked_Books:pCube21" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
 		
 		2 "|Stacked_Books:Books|Stacked_Books:pCube22" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
-		
-		2 "|Stacked_Books:Books|Stacked_Books:pCube23" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
 		
 		2 "|Stacked_Books:Books|Stacked_Books:pCube24" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
 		
@@ -705,63 +712,61 @@ createNode reference -n "Stacked_BooksRN";
 		2 "|Stacked_Books:Books|Stacked_Books:pCube43" "translate" " -type \"double3\" 8.2216300943812417 4.08802989943062656 -9"
 		
 		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube15.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[1]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube16.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[2]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube17.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[3]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube18.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[4]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube19.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[5]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube20.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[6]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube21.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[7]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube22.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[8]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube23.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[9]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube24.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[10]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube25.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube16.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[11]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube26.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube17.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[12]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube27.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube18.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[13]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube28.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube19.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[14]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube29.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube20.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[15]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube30.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube21.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[16]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube31.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube22.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[17]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube32.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube24.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[18]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube33.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube25.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[19]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube34.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube26.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[20]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube35.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube27.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[21]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube36.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube28.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[22]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube37.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube29.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[23]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube38.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube30.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[24]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube39.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube31.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[25]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube40.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube32.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[26]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube41.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube33.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[27]" ""
-		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube42.drawOverride" 
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube34.drawOverride" 
 		"Stacked_BooksRN.placeHolderList[28]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube35.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[29]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube36.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[30]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube37.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[31]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube38.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[32]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube39.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[33]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube40.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[34]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube41.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[35]" ""
+		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube42.drawOverride" 
+		"Stacked_BooksRN.placeHolderList[36]" ""
 		5 4 "Stacked_BooksRN" "|Stacked_Books:Books|Stacked_Books:pCube43.drawOverride" 
-		"Stacked_BooksRN.placeHolderList[29]" "";
+		"Stacked_BooksRN.placeHolderList[37]" "";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode reference -n "ChairRN";
@@ -930,6 +935,93 @@ createNode groupId -n "groupId10";
 createNode groupId -n "groupId11";
 	rename -uid "49C28F27-4C85-4BA6-4044-15BDC4E3BF57";
 	setAttr ".ihi" 0;
+createNode polyAutoProj -n "polyAutoProj1";
+	rename -uid "17B7939D-46D7-E9E9-BB92-438D0CD6A40C";
+	setAttr ".cch" yes;
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "f[0:17]";
+	setAttr ".ix" -type "matrix" 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1;
+	setAttr ".s" -type "double3" 24.000000953674316 24.000000953674316 24.000000953674316 ;
+	setAttr ".ps" 0.20000000298023224;
+	setAttr ".dl" yes;
+createNode polyMapSewMove -n "polyMapSewMove1";
+	rename -uid "183C8ADE-45B7-7D9E-16F0-BB9268353096";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[11]";
+createNode polyMapSewMove -n "polyMapSewMove2";
+	rename -uid "4DDD9FFF-40FB-B41C-DB56-2F8649E04A17";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[6]";
+createNode polyMapSewMove -n "polyMapSewMove3";
+	rename -uid "60834A7D-4CFC-1419-5ED9-D6906E3AB80D";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[0]";
+createNode polyMapSewMove -n "polyMapSewMove4";
+	rename -uid "63415193-4D7A-FD9A-8C7C-F1A9B5157524";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[2]";
+createNode polyMapSewMove -n "polyMapSewMove5";
+	rename -uid "A95FE466-443C-943E-90C4-FEB9B7033E90";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[7]";
+createNode polyMapSewMove -n "polyMapSewMove6";
+	rename -uid "4384A59A-4750-3253-63A5-D88D809E75B1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[49]";
+createNode polyMapSewMove -n "polyMapSewMove7";
+	rename -uid "B0A9B46A-4BCB-2FBF-3335-42B2F9870BD2";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[39]";
+createNode polyMapSewMove -n "polyMapSewMove8";
+	rename -uid "FACFE51D-4112-D6FB-70D3-B9A7AF51FCC7";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[12]";
+createNode polyMapSewMove -n "polyMapSewMove9";
+	rename -uid "01512C53-4A66-7C73-8D5E-E997F8048066";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[32]";
+createNode polyMapSewMove -n "polyMapSewMove10";
+	rename -uid "F5D212F2-42C1-A365-A3D2-17BF8F1BEF53";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[27]";
+createNode polyMapSewMove -n "polyMapSewMove11";
+	rename -uid "71E6EF31-4C8D-7192-8164-12AAF87896D1";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[24]";
+createNode polyMapSewMove -n "polyMapSewMove12";
+	rename -uid "33FCD6FB-4061-F89F-C1D6-B28110154AC5";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[19]";
+createNode polyMapSewMove -n "polyMapSewMove13";
+	rename -uid "3F066705-4B5F-0E58-9ED3-F9A9822F3846";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[14]";
+createNode polyMapSewMove -n "polyMapSewMove14";
+	rename -uid "8DB05467-4DFD-E2B1-82E9-25BF0EEFC601";
+	setAttr ".uopa" yes;
+	setAttr ".ics" -type "componentList" 1 "e[37]";
+createNode polyTweakUV -n "polyTweakUV1";
+	rename -uid "50337734-4E0D-9D70-61EF-11BA752ECE45";
+	setAttr ".uopa" yes;
+	setAttr -s 72 ".uvtk[0:71]" -type "float2" -0.045358125 0.47906533 -0.015179951
+		 0.47906533 -0.015179962 0.47966766 -0.045358125 0.47966769 -0.045358125 0.44822058
+		 -0.015179947 0.44822058 -0.015179951 0.44882289 -0.045358125 0.44882289 0.29655096
+		 0.1067583 0.29655096 0.1067583 0.29655096 0.10675836 0.29655096 0.10675836 0.2965509
+		 0.10675836 0.29655096 0.10675836 0.2965509 0.10675836 0.29655096 0.1067583 0.2965509
+		 0.10675836 0.2965509 0.1067583 0.29655096 0.1067583 0.29655096 0.10675836 0.29655096
+		 0.10675833 0.2965509 0.10675833 0.29655096 0.1067583 0.29655096 0.1067583 0.33609104
+		 0 0.33609104 0 0.33609104 0 0.33609107 0 0.33609104 0 0.33609104 0 0.33609104 0 0.33609104
+		 0 0.33609104 0 -0.045960519 0.47906357 -0.045960519 0.44882104 -0.014577562 0.4488211
+		 -0.014577581 0.4790636 0.29655096 0.1067583 0.29655096 0.10675836 0.2965509 0.10675833
+		 0.2965509 0.10675833 0.33609101 0 0.33609104 0 0.33609104 0 -0.023948014 0.45088765
+		 -0.023947999 0.45768037 -0.017155167 0.45768037 -0.017155167 0.45088765 -0.023947999
+		 0.46707872 -0.017155152 0.46707872 -0.017155167 0.46028599 -0.023948014 0.46028599
+		 -0.023948014 0.46955231 -0.023947999 0.47634515 -0.017155152 0.47634515 -0.017155167
+		 0.46955231 -0.01517994 0.50991005 -0.045358125 0.50991005 -0.017155159 0.50732774
+		 -0.017155152 0.50105262 -0.021955013 0.50105262 -0.023947984 0.50105262 -0.023947999
+		 0.50784546 -0.017155167 0.50784546 -0.023947999 0.49844706 -0.017155159 0.49844706
+		 -0.017155152 0.49165425 -0.023947984 0.49165422 -0.023947999 0.48918068 -0.017155174
+		 0.48918071 -0.017155174 0.48238784 -0.023947999 0.48238784;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -956,11 +1048,12 @@ select -ne :openPBR_shader1;
 	setAttr ".bc" -type "float3" 0.40000001 0.40000001 0.40000001 ;
 	setAttr ".sr" 0.5;
 select -ne :initialShadingGroup;
-	setAttr -s 70 ".dsm";
+	setAttr -s 69 ".dsm";
 	setAttr ".ro" yes;
 	setAttr -s 17 ".gn";
 select -ne :initialParticleSE;
 	setAttr ".ro" yes;
+select -ne :initialMaterialInfo;
 select -ne :defaultRenderGlobals;
 	addAttr -ci true -h true -sn "dss" -ln "defaultSurfaceShader" -dt "string";
 	setAttr ".ren" -type "string" "arnold";
@@ -981,15 +1074,6 @@ select -ne :hardwareRenderGlobals;
 	setAttr ".btrs" 512;
 connectAttr "Furniture.di" "Water_bottleRN.phl[1]";
 connectAttr "Furniture.di" "BookcaseRN.phl[1]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[1]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[2]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[3]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[4]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[5]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[6]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[7]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[8]";
-connectAttr "Furniture.di" "Stacked_BooksRN.phl[9]";
 connectAttr "Furniture.di" "Stacked_BooksRN.phl[10]";
 connectAttr "Furniture.di" "Stacked_BooksRN.phl[11]";
 connectAttr "Furniture.di" "Stacked_BooksRN.phl[12]";
@@ -1010,6 +1094,14 @@ connectAttr "Furniture.di" "Stacked_BooksRN.phl[26]";
 connectAttr "Furniture.di" "Stacked_BooksRN.phl[27]";
 connectAttr "Furniture.di" "Stacked_BooksRN.phl[28]";
 connectAttr "Furniture.di" "Stacked_BooksRN.phl[29]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[30]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[31]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[32]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[33]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[34]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[35]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[36]";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[37]";
 connectAttr "Furniture.di" "ChairRN.phl[1]";
 connectAttr "Floor.di" "Floor_Mesh.do";
 connectAttr "groupId1.id" "|Wall_2|Wall_2.iog.og[7].gid";
@@ -1034,12 +1126,13 @@ connectAttr "groupId6.id" "polySurfaceShape2.iog.og[0].gid";
 connectAttr "groupId1.id" "polySurfaceShape2.iog.og[1].gid";
 connectAttr "groupId3.id" "polySurfaceShape2.iog.og[2].gid";
 connectAttr "groupId8.id" "polySurfaceShape2.ciog.cog[0].cgid";
-connectAttr "polyBoolean3.out" "polySurfaceShape3.i";
+connectAttr "polyTweakUV1.out" "polySurfaceShape3.i";
 connectAttr "groupId9.id" "polySurfaceShape3.iog.og[0].gid";
 connectAttr "groupId6.id" "polySurfaceShape3.iog.og[1].gid";
 connectAttr "groupId1.id" "polySurfaceShape3.iog.og[2].gid";
 connectAttr "groupId3.id" "polySurfaceShape3.iog.og[3].gid";
 connectAttr "groupId11.id" "polySurfaceShape3.ciog.cog[0].cgid";
+connectAttr "polyTweakUV1.uvtk[0]" "polySurfaceShape3.uvst[0].uvtw";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
@@ -1048,6 +1141,7 @@ connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
 connectAttr "layerManager.dli[1]" "Floor.id";
 connectAttr "sharedReferenceNode.sr" "BookcaseRN.sr";
+connectAttr "Furniture.di" "Stacked_BooksRN.phl[9]";
 connectAttr "Furniture.di" "Chair_2RN.phl[1]";
 connectAttr "layerManager.dli[2]" "Furniture.id";
 connectAttr "Furniture.di" "TableRN.phl[1]";
@@ -1065,6 +1159,23 @@ connectAttr "pCubeShape1.wm" "polyBoolean3.im[0]";
 connectAttr "polySurfaceShape2.wm" "polyBoolean3.im[1]";
 connectAttr "polyCube1.out" "groupParts1.ig";
 connectAttr "groupId9.id" "groupParts1.gi";
+connectAttr "polyBoolean3.out" "polyAutoProj1.ip";
+connectAttr "polySurfaceShape3.wm" "polyAutoProj1.mp";
+connectAttr "polyAutoProj1.out" "polyMapSewMove1.ip";
+connectAttr "polyMapSewMove1.out" "polyMapSewMove2.ip";
+connectAttr "polyMapSewMove2.out" "polyMapSewMove3.ip";
+connectAttr "polyMapSewMove3.out" "polyMapSewMove4.ip";
+connectAttr "polyMapSewMove4.out" "polyMapSewMove5.ip";
+connectAttr "polyMapSewMove5.out" "polyMapSewMove6.ip";
+connectAttr "polyMapSewMove6.out" "polyMapSewMove7.ip";
+connectAttr "polyMapSewMove7.out" "polyMapSewMove8.ip";
+connectAttr "polyMapSewMove8.out" "polyMapSewMove9.ip";
+connectAttr "polyMapSewMove9.out" "polyMapSewMove10.ip";
+connectAttr "polyMapSewMove10.out" "polyMapSewMove11.ip";
+connectAttr "polyMapSewMove11.out" "polyMapSewMove12.ip";
+connectAttr "polyMapSewMove12.out" "polyMapSewMove13.ip";
+connectAttr "polyMapSewMove13.out" "polyMapSewMove14.ip";
+connectAttr "polyMapSewMove14.out" "polyTweakUV1.ip";
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "Floor_MeshShape.iog" ":initialShadingGroup.dsm" -na;
 connectAttr "|Wall_1|Wall_1.iog" ":initialShadingGroup.dsm" -na;
