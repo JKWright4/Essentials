@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: Scene2.ma
-//Last modified: Fri, Mar 27, 2026 04:48:17 PM
+//Last modified: Fri, Mar 27, 2026 04:49:48 PM
 //Codeset: 1252
 file -rdi 1 -ns "cauldron" -rfn "cauldronRN" -op "v=0;" -typ "mayaAscii" "C:/Git Hub/Essentials/DAGV1100and1200/Maya//assets/Scene 2/cauldron.ma";
 file -r -ns "cauldron" -dr 1 -rfn "cauldronRN" -op "v=0;" -typ "mayaAscii" "C:/Git Hub/Essentials/DAGV1100and1200/Maya//assets/Scene 2/cauldron.ma";
@@ -12,17 +12,17 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 26200)";
-fileInfo "UUID" "8F0BCB9C-415B-F7BF-30ED-7C88B3E79244";
+fileInfo "UUID" "6DC13B4B-4985-C3D5-8BED-BE967C5C969E";
 createNode transform -s -n "persp";
 	rename -uid "482A4F04-45BF-3A0C-41DE-D682132C5E86";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 39.076228096756424 39.543170905228351 39.2998716263658 ;
-	setAttr ".r" -type "double3" -32.138352729618227 43.000000000004277 0 ;
+	setAttr ".t" -type "double3" 21.278232469337727 7.0675481895218653 24.299078274676756 ;
+	setAttr ".r" -type "double3" -9.9383527296182343 39.000000000004349 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "5234C0C8-42F5-56E4-BC65-CF96866B48D8";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 66.419136143706609;
+	setAttr ".coi" 32.174795509569378;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
