@@ -1,6 +1,6 @@
 //Maya ASCII 2026 scene
 //Name: Scene2.ma
-//Last modified: Wed, Apr 29, 2026 11:49:42 AM
+//Last modified: Wed, Apr 29, 2026 11:54:45 AM
 //Codeset: 1252
 file -rdi 1 -ns "cauldron" -rfn "cauldronRN" -op "v=0;" -typ "mayaAscii" "C:/Git Hub/Essentials/DAGV1100and1200/Maya//assets/Scene 2/cauldron.ma";
 file -rdi 1 -ns "Bookcase" -rfn "BookcaseRN" -op "v=0;" -typ "mayaAscii" "C:/Git Hub/Essentials/DAGV1100and1200/Maya//assets/Scene 2/Bookcase.ma";
@@ -106,17 +106,17 @@ fileInfo "product" "Maya 2026";
 fileInfo "version" "2026";
 fileInfo "cutIdentifier" "202510291147-60ec9eda33";
 fileInfo "osv" "Windows 11 Pro v2009 (Build: 26200)";
-fileInfo "UUID" "7F81F30B-4737-6E6D-55D1-918A0C8A0C47";
+fileInfo "UUID" "A2B593AD-49EA-7051-BB4D-D98E565EFD26";
 createNode transform -s -n "persp";
 	rename -uid "482A4F04-45BF-3A0C-41DE-D682132C5E86";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 48.034063965203934 27.956509285385277 32.667880532845373 ;
+	setAttr ".t" -type "double3" 48.350600439966392 26.932921885725108 32.951175492781232 ;
 	setAttr ".r" -type "double3" -22.53835272173928 -1392.2000000001563 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "5234C0C8-42F5-56E4-BC65-CF96866B48D8";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 67.854631231775485;
+	setAttr ".coi" 67.854631231784566;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -934,7 +934,7 @@ createNode mesh -n "polySurfaceShape9" -p "polySurface6";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode fosterParent -n "cauldronRNfosterParent1";
-	rename -uid "EF12034A-4E8A-41E1-67F5-70BDEEB7DDD0";
+	rename -uid "8E75AFD4-4363-E93B-93D8-A5990BB50AD9";
 createNode mesh -n "cauldron:polySurfaceShape4" -p "cauldronRNfosterParent1";
 	rename -uid "97EFCA31-4443-5BD9-C562-678D95ECDCFD";
 	setAttr -k off ".v";
@@ -1168,7 +1168,7 @@ createNode mesh -n "cauldron:polySurfaceShape1" -p "cauldronRNfosterParent1";
 		9 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode fosterParent -n "window_tallskinnyRNfosterParent1";
-	rename -uid "5917A587-4D4E-4C73-459E-27A3AA43A319";
+	rename -uid "DCAC2963-47C0-CD4D-15BE-3497A3569CF9";
 createNode mesh -n "window_tallskinny:polySurfaceShape1" -p "window_tallskinnyRNfosterParent1";
 	rename -uid "671E0CE8-4781-4FF7-3D9B-09816F3CD80C";
 	setAttr -k off ".v";
@@ -1362,7 +1362,7 @@ createNode mesh -n "window_tallskinny:polySurfaceShape1" -p "window_tallskinnyRN
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode fosterParent -n "window_tallskinnyRN1fosterParent1";
-	rename -uid "829F5C19-4FE1-CB8F-E423-91B8E7D01DA6";
+	rename -uid "E2590DBF-4F8B-C1F9-34DF-298FBABD834E";
 createNode mesh -n "window_tallskinny1:polySurfaceShape1" -p "window_tallskinnyRN1fosterParent1";
 	rename -uid "E53F56CF-4CFA-7F1B-F10C-2FB34FF49382";
 	setAttr -k off ".v";
@@ -1556,7 +1556,7 @@ createNode mesh -n "window_tallskinny1:polySurfaceShape1" -p "window_tallskinnyR
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode fosterParent -n "railingRNfosterParent1";
-	rename -uid "DA724EA5-4702-A339-76CA-5E9E3F05CEFC";
+	rename -uid "783E4809-4E29-8B73-37FC-FD997D0B2C68";
 createNode mesh -n "railing:polySurfaceShape5" -p "railingRNfosterParent1";
 	rename -uid "A7156353-43A8-AA41-CDDE-9F8EF8F72341";
 	setAttr -k off ".v";
@@ -3999,7 +3999,7 @@ createNode mesh -n "railing:polySurfaceShape1" -p "railingRNfosterParent1";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".dr" 1;
 createNode fosterParent -n "plantInPotRNfosterParent1";
-	rename -uid "AA2B1054-41DA-B9F7-CBCF-B99AB2129868";
+	rename -uid "3C6D4FD2-49EF-B275-295C-6981BBD67D35";
 createNode mesh -n "plantInPot:polySurfaceShape11" -p "plantInPotRNfosterParent1";
 	rename -uid "EA823D92-4DF6-D815-C9B3-808007B3C71F";
 	setAttr -k off ".v";
@@ -11118,7 +11118,7 @@ createNode mesh -n "plantInPot:polySurfaceShape1" -p "plantInPotRNfosterParent1"
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode fosterParent -n "plantInPotRN1fosterParent1";
-	rename -uid "62E37EBE-4CC2-3B34-B48A-F3BF7123D416";
+	rename -uid "0E9A00A8-4897-C916-E5CE-8DB23F4E3A0F";
 createNode mesh -n "plantInPot1:polySurfaceShape11" -p "plantInPotRN1fosterParent1";
 	rename -uid "1254D7A5-4741-3A04-9725-8FB2A77E8432";
 	setAttr -k off ".v";
